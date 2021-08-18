@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Mezar Yerleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/select2/select2.css" />
+    <link rel="stylesheet" href="~/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    <link rel="stylesheet" href="~/assets/stylesheets/theme-custom.css">
+</head>
+<header class="page-header">
+    <h2>@Html.ViewBag.title</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>@Html.ViewBag.title</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
+        </div>
+
+        <h2 class="panel-title">
+            <a href="~/MezarYeri/Yeni" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni</a>
+            <a href="~/Home" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+        </h2>
+    </header>
+    <div class="panel-body">
+        <div class="col-lg-12 mb-sm" style="padding-left:0px;">
+            @using (Html.BeginForm("Search", "MezarYeri", FormMethod.Get))
+            {
+                <div class="col-lg-3 pr-xs pb-xs" style="padding-left:0px;">
+                    @Html.DropDownList("search",
+                        new List<SelectListItem> {
+                         new SelectListItem {
+                            Text="Ad Soyad'a göre",
+                            Value="1",
+                            Selected = true,
+                            // Disabled = true  disable olarak gelsin istersek kullanıyoruz
+                         },
+                         new SelectListItem {
+                             Text="Tc No'ya göre",
+                             Value="2",
+                         }
+                        }, new { @class = "form-control" })
+                </div>
+
+                <div class="col-lg-4 pr-xs pb-xs" style="padding-left:0px;">
+                    <input type="text" id="p" name="p" class="form-control" />
+                    @*@Html.TextBox("p", new { @class = "form-control" })*@
+                </div>
+                <div class="col-lg-2 pr-xs pb-xs" style="padding-left:0px;">
+                    <input type="submit" value="Ara" class="btn btn-primary" />
+                </div>
+            }
+
+        </div>
+
+
+
+
+
+
+
+        @if (ViewBag.Mesaj != null)
+            {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>@ViewBag.Mesaj</strong>
+            </div>
+        }
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>MEZAR YERİ NO</th>
+                    <th>MEZARLIK</th>
+                    <th>ADA</th>
+                    <th>TC NO</th>
+                    <th>AD SOYAD</th>
+                    <th>İRTİBAT NO</th>
+                    <th>DOĞUM - ÖLÜM TARİHİ</th>
+                    <th>DEFİN TARİHİ </th>
+                    <th>MAKBUZ NO</th>
+                    <th style="min-width:180px;width:180px">İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MezarNo</td>
+                        <td>@item.Mezarliklar.Baslik</td>
+                        <td>@item.Adalar.AdaNo</td>
+                        <td>@item.TcNo</td>
+                        <td>@item.Adi @item.Soyadi</td>
+                        <td>@item.IrtibatNo</td>
+                        <td>@item.DogumTarihi @item.OlumTarihi</td>
+                        <td>@item.DefinTarihi</td>
+                        <td>@item.MakbuzNo</td>
+                        <td>
+                            <a href="~/MezarYeri/DetayGetir/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-success" data-toggle="tooltip" data-placement="top" title="Detaylar"><i class="fa fa-list"></i></a>
+                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                            {
+                                <a href="~/MezarYeri/BilgiGetir/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-primary" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-pencil"></i></a>
+                            }
+                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                            {
+                                <a href="~/MezarYeri/Sil/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('@item.MezarNo kaydı silinsin mi?')"><i class="fa fa-eraser"></i></a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+</section>
+<!-- end: page -->
+@section scripts{
+
+    <!-- Specific Page Vendor -->
+    @*<script src="~/assets/vendor/select2/select2.js"></script>*@
+    @*<script src="~/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>*@
+    <script src="~/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/assets/javascripts/theme.js"></script>
+
+    <!-- Examples -->
+    @*<script src="~/assets/javascripts/tables/examples.datatables.default.js"></script>*@
+
+
+
+}
+

@@ -1,0 +1,132 @@
+﻿@model Adalar
+
+@{
+    ViewBag.Title = "Ada Ekleme ve Güncelleme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="page-header">
+    <h2>@Html.ViewBag.title Paneli</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a href="~/Adalar">
+                    <span>Adalar</span>
+                </a>
+            </li>
+            <li><span>@Html.ViewBag.title</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+<div class="row">
+    <div class="col-md-12">
+        @if (ViewBag.Mesaj != null)
+            {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>@ViewBag.Mesaj</strong>
+            </div>
+        }
+
+        @using (Html.BeginForm("Kaydet", "Adalar", FormMethod.Post))
+        {
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+
+                    <h2 class="panel-title">Ada Bilgileri</h2>
+                    <p class="panel-subtitle">
+                        Ada bilgilerini doğru bir şekilde yazıp kaydedin.
+                    </p>
+                </header>
+                <div class="panel-body">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ada No:</label>
+                        <div class="col-sm-10">
+                            @if (Model.AdaNo != null)
+                            {
+                                @Html.TextBoxFor(m => m.AdaNo, new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(m => m.AdaNo, "", new { @class = "text-danger" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.AdaNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AdaNo, "", new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mezarlık Adı:</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(m => m.MezarlikId, Model.MezarlikListesi, "---Seçiniz---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MezarlikId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mezar Sayısı:</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.MezarlikSayisi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MezarlikSayisi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Detay: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Detay, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Detay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Açıklama: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Aciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kayıt Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.SaveDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.SaveDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Değiştirme Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.EditDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.EditDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.SaveUserId)
+
+
+
+                </div>
+
+
+
+                <footer class="panel-footer">
+                    <button type="submit" value="Upload" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Kaydet</button>
+                    <a href="~/Adalar" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+                </footer>
+            </section>
+        }
+    </div>
+
+
+</div>

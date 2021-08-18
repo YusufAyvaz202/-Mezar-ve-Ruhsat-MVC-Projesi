@@ -1,0 +1,213 @@
+﻿
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/select2/select2.css" />
+    <link rel="stylesheet" href="~/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    <link rel="stylesheet" href="~/assets/stylesheets/theme-custom.css">
+</head>
+<header class="page-header">
+    <h2>Ruhsatlar</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Ruhsatlar</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
+        </div>
+
+        <h2 class="panel-title">
+            <a href="~/Ruhsat/Yeni" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni</a>
+            <a href="~/Home" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+
+
+
+
+        </h2>
+
+
+
+
+    </header>
+
+    
+
+
+    <div class="panel-body">
+        <div class="row pl-md">
+            <div class="col-lg-12 mb-sm" style="padding-left:0px;">
+                @using (Html.BeginForm("Search", "Ruhsat", FormMethod.Get))
+            {
+                    <div class="col-lg-3 pr-xs pb-xs" style="padding-left:0px;">
+                        @Html.DropDownList("search",
+                        new List<SelectListItem> {
+                         new SelectListItem {
+                            Text="Ada ve Parsel No'ya göre",
+                            Value="1",
+                            Selected = true,
+                            // Disabled = true  disable olarak gelsin istersek kullanıyoruz
+                         },
+                         new SelectListItem {
+                             Text="Ruhsat Sahibine göre",
+                             Value="2",
+                         },
+                         new SelectListItem {
+                             Text="Tc Kimlik No'ya göre",
+                             Value="3",
+                         }
+                        }, new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-lg-4 pr-xs pb-xs" style="padding-left:0px;">
+                        <input type="text" id="p" name="p" class="form-control" />
+                        @*@Html.TextBox("p", new { @class = "form-control" })*@
+                    </div>
+                    <div class="col-lg-2 pr-xs pb-xs" style="padding-left:0px;">
+                        <input type="submit" value="Ara" class="btn btn-primary" />
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-condensed mb-none" id="datatable-default">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>RUHSAT NO</th>
+                        <th>RUHSAT SAHİBİ</th>
+                        <th>TC NO</th>
+                        <th>ADA</th>
+                        <th>PARSEL</th>
+                        <th>İNŞAAT ADRESİ</th>
+                        @*<th>RUHSAT BİLGİLERİ</th>*@
+                        <th>VERİLİŞ AMACI</th>
+                        <th>RUHSAT TARİHİ</th>
+                        @*<th>İNŞAAT HARCI</th>*@
+                        @*<th>YAPI DENETİM</th>*@
+                        @*<th>ŞANTİYE ŞEFİ</th>*@
+                        @*<th>İSKAN TARİHİ</th>*@
+                        @*<th>İSKAN</th>*@
+                        <th>MÜTEAHHİT</th>
+                        @*<th>AÇIKLAMA</th>*@
+                        @*<th>DİĞER BİLGİLER</th>*@
+                        <th style="min-width:255px;width:255px">İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.Id</td>
+                            <td>@item.RuhsatNo</td>
+                            <td>@item.RuhsatSahibi</td>
+                            <td>@item.TcNo</td>
+                            <td>@item.Ada</td>
+                            <td>@item.Parsel</td>
+                            <td>@item.InsaatAdresi</td>
+                            @*<td>@item.RUHSAT_BILGILERI</td>*@
+                            <td>@item.RuhsatTipleri.Tip</td>
+                            <td>@item.RuhsatTarihi</td>
+                            @*<td>@item.INSAAT_HARCI</td>*@
+                            @*<td>@item.YAPI_DENETIM</td>*@
+                            @*<td>@item.SANTIYE_SEFI</td>*@
+                            @*<td>@item.ISKAN_TARIHI</td>*@
+                            @*<td>@item.ISKAN</td>*@
+                            <td>@item.Muteahhit</td>
+                            @*<td>@item.ACIKLAMA</td>*@
+                            @*<td>@item.DIGER_BILGILER</td>*@
+                            <td>
+
+                                <div class="btn-group">
+                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-default dropdown-toggle" data-toggle="dropdown">Göster <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="@item.Tarama0" target="_blank">Yapı Ruhsatı</a></li>
+                                        <li><a href="@item.Tarama1" target="_blank">Yapı Kullanım İzni 1</a></li>
+                                        <li><a href="@item.Tarama2" target="_blank">Yapı Kullanım İzni 2</a></li>
+                                        <li><a href="@item.Tarama3" target="_blank">Yapı Kullanım İzni 3</a></li>
+
+                                    </ul>
+                                </div>
+
+
+                                @*<a href="~/Taramalar/@item.RUHSAT_TARAMA" type="button" class="mb-xs mt-xs mr-xs btn btn-success" target="_blank"><i class="fa fa-external-link"></i> Pdf</a>*@
+
+
+
+
+                                <a href="~/Ruhsat/DetayGetir/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-success" data-toggle="tooltip" data-placement="top" title="Detaylar"><i class="fa fa-list"></i></a>
+                                @if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                {
+                                <a href="~/Ruhsat/BilgiGetir/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-primary" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-pencil"></i></a>
+                                }
+                                @if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                {
+
+                                <a href="~/Ruhsat/Sil/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('@item.Id kaydı silinsin mi?')"><i class="fa fa-eraser"></i></a>
+                                }
+
+
+
+                            </td>
+
+
+
+
+                        </tr>
+
+
+                    }
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+<!-- end: page -->
+
+
+
+
+@section scripts{
+
+    <!-- Specific Page Vendor -->
+    @*<script src="~/assets/vendor/select2/select2.js"></script>*@
+    @*<script src="~/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>*@
+    @*<script src="~/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>*@
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/assets/javascripts/theme.js"></script>
+
+    <!-- Examples -->
+    @*<script src="~/assets/javascripts/tables/examples.datatables.default.js"></script>*@
+
+
+
+}
+
+

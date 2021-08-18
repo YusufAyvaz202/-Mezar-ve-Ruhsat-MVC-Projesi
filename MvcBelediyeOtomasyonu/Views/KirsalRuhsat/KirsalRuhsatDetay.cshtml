@@ -1,0 +1,300 @@
+﻿@model KirsalYapiRuhsatlari
+
+@{
+    ViewBag.Title = "Kırsal Yapı Ruhsat Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="page-header">
+    <h2>Kırsal Yapı Ruhsat Detayları</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><a href="~/KirsalRuhsat"><span>Kırsal Yapı Ruhsatları</span></a></li>
+            <li><span>Kırsal Yapı Ruhsat Detayları</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
+        </div>
+
+        <h2 class="panel-title">
+            @if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+            {
+                <a href="~/KirsalRuhsat/Yeni" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni</a>
+            }
+            <a href="~/KirsalRuhsat" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+        </h2>
+    </header>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="tabs tabs-primary">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#popular" data-toggle="tab">Kırsal Yapı Ruhsat Bilgileri</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="popular" class="tab-pane active">
+                            <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>@Html.DisplayFor(m => m.Id, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>RUHSAT NO</th>
+                                        <td>@Html.DisplayFor(m => m.RuhsatNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>RUHSAT SAHİBİ</th>
+                                        <td>@Html.DisplayFor(m => m.YapiSahibi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>TC NO</th>
+                                        <td>@Html.DisplayFor(m => m.TcNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MAHALLE</th>
+                                        <td>@Html.DisplayFor(m => m.Mahalle, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ADA</th>
+                                        <td>@Html.DisplayFor(m => m.Ada, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>PARSEL</th>
+                                        <td>@Html.DisplayFor(m => m.Parsel, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>PARSEL ALANI</th>
+                                        <td>@Html.DisplayFor(m => m.ParselAlani, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>YAPI ALANI</th>
+                                        <td>@Html.DisplayFor(m => m.YapiAlani, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ADRES</th>
+                                        <td>@Html.DisplayFor(m => m.Adres, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>YAPI SINIFI</th>
+                                        <td>@Html.DisplayFor(m => m.YapiSinifi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>İNŞAAT TÜRÜ</th>
+                                        <td>@Html.DisplayFor(m => m.InsaatTuru, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>KAT SAYISI</th>
+                                        <td>@Html.DisplayFor(m => m.KatSayisi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MİMARİ PROJE MÜELLİFİ</th>
+                                        <td>@Html.DisplayFor(m => m.MimariProjeMuellifi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>STATİK PROJE MÜELLİFİ</th>
+                                        <td>@Html.DisplayFor(m => m.StatikProjeMuellifi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ELEKTRİK PROJE MÜELLİFİ</th>
+                                        <td>@Html.DisplayFor(m => m.ElektrikProjeMuellifi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>İSKAN</th>
+                                        @if (Model.IskanTipId == 1)
+                                        {
+                                            <td>Kısmi</td>
+                                        }
+                                        else if (Model.IskanTipId == 2)
+                                        {
+                                            <td>Tam</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>DETAY BİLGİLER</th>
+                                        <td>@Html.DisplayFor(m => m.Detay, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>AÇIKLAMA</th>
+                                        <td>@Html.DisplayFor(m => m.Aciklama, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>KAYIT TARİHİ</th>
+                                        <td>@Html.DisplayFor(m => m.SaveDate, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>KAYDEDEN KULLANICI</th>
+                                        <td>@Html.DisplayFor(m => m.SaveUserId, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DEĞİŞTİRME TARİHİ</th>
+                                        <td>@Html.DisplayFor(m => m.EditDate, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DEĞİŞTİREN KULLANICI</th>
+                                        <td>@Html.DisplayFor(m => m.EditUserId, new { @class = "form-control" })</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th style="text-align:right; vertical-align:inherit;">İŞLEMLER</th>
+                                        <td>
+                                            @if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                            {
+                                                <a href="~/KirsalRuhsat/BilgiGetir/@Model.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Düzenle</a>
+                                            }
+                                            &nbsp;| &nbsp;
+                                            @if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                            {
+                                                <a href="~/KirsalRuhsat/Sil/@Model.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('@Model.YapiSahibi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Sil</a>
+                                            }
+
+                                        </td>
+                                    </tr>
+
+
+                                </thead>
+
+
+
+
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tabs tabs-primary">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#ruhsat1" data-toggle="tab">Yapı Ruhsatı 1</a>
+                        </li>
+                        <li>
+                            <a href="#ruhsat2" data-toggle="tab">Yapı Ruhsatı 2</a>
+                        </li>
+                        <li>
+                            <a href="#ruhsat3" data-toggle="tab">Yapı Ruhsatı 3</a>
+                        </li>
+                        <li>
+                            <a href="#proje" data-toggle="tab">Proje Dosyası</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="ruhsat1" class="tab-pane active">
+                            @{
+                                if (@Model.Tarama0 != null)
+                                {
+                                    if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                    {
+                                        <div class="alert alert-info">
+                                            @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                            Dosyayı silmek için <a href="~/KirsalRuhsat/DosyaSil?File=file0&Id=@Model.Id" class="alert-link" onclick="return confirm('@Model.YapiSahibi kişisine ait tarama dosyası silinsin mi?')">burayı</a> tıklayın.
+                                        </div>
+                                    }
+                                    <iframe src="~/@Model.Tarama0" width="100%" height="780" style="border: none;" allowfullscreen webkitallowfullscreen></iframe>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Tarama Dosyası <strong>bulunamadı!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div id="ruhsat2" class="tab-pane">
+                            @{
+                                if (@Model.Tarama1 != null)
+                                {
+                                    if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                    {
+                                        <div class="alert alert-info">
+                                            @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                            Dosyayı silmek için <a href="~/KirsalRuhsat/DosyaSil?File=file1&Id=@Model.Id" class="alert-link" onclick="return confirm('@Model.YapiSahibi kişisine ait tarama dosyası silinsin mi?')">burayı</a> tıklayın.
+                                        </div>
+                                    }
+                                    <iframe src="~/@Model.Tarama1" width="100%" height="780" style="border: none;" allowfullscreen webkitallowfullscreen></iframe>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Tarama Dosyası <strong>bulunamadı!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div id="ruhsat3" class="tab-pane">
+                            @{
+                                if (@Model.Tarama2 != null)
+                                {
+                                    if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                    {
+                                        <div class="alert alert-info">
+                                            @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                            Dosyayı silmek için <a href="~/KirsalRuhsat/DosyaSil?File=file2&Id=@Model.Id" class="alert-link" onclick="return confirm('@Model.YapiSahibi kişisine ait tarama dosyası silinsin mi?')">burayı</a> tıklayın.
+                                        </div>
+                                    }
+                                    <iframe src="~/@Model.Tarama2" width="100%" height="780" style="border: none;" allowfullscreen webkitallowfullscreen></iframe>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Tarama Dosyası <strong>bulunamadı!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div id="proje" class="tab-pane">
+                            @{
+                                if (@Model.ProjeDosyasi != null)
+                                {
+                                    if (User.IsInRole("A") || User.IsInRole("RA") || User.IsInRole("U"))
+                                    {
+                                        <div class="alert alert-info">
+                                            @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                            Dosyayı silmek için <a href="~/KirsalRuhsat/DosyaSil?File=proje&Id=@Model.Id" class="alert-link" onclick="return confirm('@Model.YapiSahibi kişisine ait proje dosyası silinsin mi?')">burayı</a> tıklayın.
+                                        </div>
+                                    }
+                                    <div class="alert alert-success">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Proje Dosyası : <a href="@Model.ProjeDosyasi" class="alert-link">İndirmek için tıklayınız...</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Proje Dosyası <strong>bulunamadı!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,322 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="page-header">
+    <h2>Anasayfa</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Anasayfa</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA") || User.IsInRole("RU"))
+        {
+            <div class="row">
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-warning">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-warning">
+                                        <i class="fa fa-database"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Yapı Ruhsatları</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["RuhsatSayisi"]</strong>
+                                            @if (Convert.ToInt32(ViewData["SonRuhsatSayisi"]) != 0)
+                                        {
+                                            <span class="text-primary">(@ViewData["SonRuhsatSayisi"] Yeni Kayıt)</span>
+                                        }
+
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/Ruhsat">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-secondary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-secondary">
+                                        <i class="fa fa-folder-open"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Kırsal Yapı Ruhsatları</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["KirsalRuhsatSayisi"]</strong>
+                                            @if (Convert.ToInt32(ViewData["SonKirsalRuhsatSayisi"]) != 0)
+                                        {
+                                            <span class="text-primary">(@ViewData["SonKirsalRuhsatSayisi"] Yeni Kayıt)</span>
+                                        }
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/KirsalRuhsat">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-tertiary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-tertiary">
+                                        <i class="fa fa-th-list"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Ruhsat Tip Sayısı</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["RuhsatTipSayisi"]</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/RuhsatTipleri">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        }
+        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("MA") || User.IsInRole("MU"))
+        {
+            <div class="row">
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-success">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-success">
+                                        <i class="fa fa-institution"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Mezarlıklar</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["MezarlikSayisi"]</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/Mezarlik">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-sitemap"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Adalar</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["AdaSayisi"]</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/Adalar">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-12 col-lg-4 col-xl-4">
+                    <section class="panel panel-featured-left panel-featured-quartenary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-quartenary">
+                                        <i class="fa fa-th-large"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Mezar Yerleri</h4>
+                                        <div class="info">
+                                            <strong class="amount">@ViewData["MezarSayisi"]</strong>
+                                            @if (Convert.ToInt32(ViewData["SonMezarSayisi"]) != 0)
+                                        {
+                                            <span class="text-primary">(@ViewData["SonMezarSayisi"] Yeni Kayıt)</span>
+                                        }
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" href="~/MezarYeri">Tüm Kayıtlar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        }
+        <div class="row">
+@if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA") || User.IsInRole("MA"))
+{
+            <div class="col-xl-3 col-lg-6">
+                <section class="panel panel-transparent">
+                    <header class="panel-heading">
+                        @*<div class="panel-actions">
+                                <a href="#" class="fa fa-caret-down"></a>
+                                <a href="#" class="fa fa-times"></a>
+                            </div>*@
+
+                        <h2 class="panel-title">Kayıt İstatistiklerim</h2>
+                    </header>
+                    <div class="panel-body">
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["KayitRuhsatSayisiYuzde"]" data-plugin-options='{ "barColor": "#ed9c28", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["KayitRuhsatSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Kaydedilen Yapı Ruhsatları</p>
+                                </div>
+                            </section>
+                        }
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["KayitKirsalRuhsatSayisiYuzde"]" data-plugin-options='{ "barColor": "#e36159", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["KayitKirsalRuhsatSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Kaydedilen Kırsal Yapı Ruhsatları</p>
+                                </div>
+                            </section>
+                        }
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("MA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["KayitMezarSayisiYuzde"]" data-plugin-options='{ "barColor": "#734ba9", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["KayitMezarSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Kaydedilen Mezar Yeri</p>
+                                </div>
+                            </section>
+                        }
+                    </div>
+                </section>
+            </div>
+}
+@if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA") || User.IsInRole("MA"))
+{
+            <div class="col-xl-3 col-lg-6">
+                <section class="panel panel-transparent">
+                    <header class="panel-heading">
+                        @*<div class="panel-actions">
+                                <a href="#" class="fa fa-caret-down"></a>
+                                <a href="#" class="fa fa-times"></a>
+                            </div>*@
+
+                        <h2 class="panel-title">Güncelleme İstatistiklerim</h2>
+                    </header>
+                    <div class="panel-body">
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["EditRuhsatSayisiYuzde"]" data-plugin-options='{ "barColor": "#ed9c28", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["EditRuhsatSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Güncellenen Yapı Ruhsatları</p>
+                                </div>
+                            </section>
+                        }
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("RA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["EditKirsalRuhsatSayisiYuzde"]" data-plugin-options='{ "barColor": "#e36159", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["EditKirsalRuhsatSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Güncellenen Kırsal Yapı Ruhsatları</p>
+                                </div>
+                            </section>
+                        }
+                        @if (User.IsInRole("A") || User.IsInRole("U") || User.IsInRole("MA"))
+                        {
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="circular-bar circular-bar-xs m-none mt-xs mr-md pull-right">
+                                        <div class="circular-bar-chart" data-percent="@ViewData["EditMezarSayisiYuzde"]" data-plugin-options='{ "barColor": "#734ba9", "delay": 300, "size": 50, "lineWidth": 4 }'>
+                                            <strong>Average</strong>
+                                            <label><span class="percent"></span>%</label>
+                                        </div>
+                                    </div>
+                                    <div class="h4 text-bold mb-none">@ViewData["EditMezarSayisi"]</div>
+                                    <p class="text-sm text-muted mb-none">Güncellenen Mezar Yeri</p>
+                                </div>
+                            </section>
+                        }
+                    </div>
+                </section>
+            </div>
+}
+        </div>
+    </div>
+    <!-- end: page -->
+</div>

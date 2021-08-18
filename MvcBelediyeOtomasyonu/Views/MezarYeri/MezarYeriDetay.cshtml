@@ -1,0 +1,193 @@
+﻿@model MezarYerleri
+@{
+    ViewBag.Title = "Mezar Yeri Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="page-header">
+    <h2>Mezar Yeri Detayları</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><a href="~/MezarYeri"><span>Mezar Yerleri</span></a></li>
+            <li><span>Mezar Yeri Detayları</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
+        </div>
+
+        <h2 class="panel-title">
+            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+            {
+                <a href="~/MezarYeri/Yeni" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni</a>
+            }
+            <a href="~/MezarYeri" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+        </h2>
+    </header>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="tabs tabs-primary">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#popular" data-toggle="tab">Mezar Yeri Bilgileri</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="popular" class="tab-pane active">
+                            <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>@Html.DisplayFor(m => m.Id, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MEZARLIK</th>
+                                        <td>@Html.DisplayFor(m => m.Mezarliklar.Baslik, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ADA NO</th>
+                                        <td>@Html.DisplayFor(m => m.Adalar.AdaNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MEZAR NO</th>
+                                        <td>@Html.DisplayFor(m => m.MezarNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>TC NO</th>
+                                        <td>@Html.DisplayFor(m => m.TcNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>AD</th>
+                                        <td>@Html.DisplayFor(m => m.Adi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>SOYAD</th>
+                                        <td>@Html.DisplayFor(m => m.Soyadi, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>CİNSİYET</th>
+                                        <td>@Html.DisplayFor(m => m.Cinsiyet, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>İRTİBAT NO</th>
+                                        <td>@Html.DisplayFor(m => m.IrtibatNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DOĞUM TARİHİ</th>
+                                        <td>@Convert.ToString(string.Format("{0:dd.MM.yyyy}", Model.DogumTarihi))</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ÖLÜM TARİHİ</th>
+                                        <td>@Convert.ToString(string.Format("{0:dd.MM.yyyy}", Model.OlumTarihi))</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>DEFİN TARİHİ</th>
+                                        <td>@Convert.ToString(string.Format("{0:dd.MM.yyyy}", Model.DefinTarihi))</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>MAKBUZ NO</th>
+                                        <td>@Html.DisplayFor(m => m.MakbuzNo, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MAKBUZ TARİHİ</th>
+                                        <td>@Convert.ToString(string.Format("{0:dd.MM.yyyy}", Model.MakbuzTarihi))</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DURUM</th>
+                                        <td>@Html.DisplayFor(m => m.Durum, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DETAY</th>
+                                        <td>@Html.DisplayFor(m => m.Detay, new { @class = "form-control" })</td>
+                                    </tr>
+                                    <tr>
+                                        <th>AÇIKLAMA</th>
+                                        <td>@Html.DisplayFor(m => m.Aciklama, new { @class = "form-control" })</td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <th style="text-align:right; vertical-align:inherit;">İŞLEMLER</th>
+                                        <td>
+                                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                                            {
+                                                <a href="~/MezarYeri/BilgiGetir/@Model.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Düzenle</a>
+                                            }
+                                            &nbsp;| &nbsp;
+                                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                                            {
+                                                <a href="~/MezarYeri/Sil/@Model.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('@Model.Adi @Model.Soyadi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Sil</a>
+                                            }
+                                            @*<a href="~/Ruhsat" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-power-off"></i> Kapat</a>*@
+                                        </td>
+                                    </tr>
+
+
+                                </thead>
+
+
+
+
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tabs tabs-primary">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#makbuztarama" data-toggle="tab">Makbuz Tarama Dosyası</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="makbuztarama" class="tab-pane active">
+                            @{
+                                if (@Model.MakbuzTarama != null)
+                                {
+                                    if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                                    {
+                                        <div class="alert alert-info">
+                                            @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                            Dosyayı silmek için <a href="~/MezarYeri/DosyaSil?File=makbuztarama&Id=@Model.Id" class="alert-link" onclick="return confirm('@Model.Adi @Model.Soyadi kişisine ait tarama dosyası silinsin mi?')">burayı</a> tıklayın.
+                                        </div>
+                                    }
+                                    <iframe src="@Model.MakbuzTarama" width="100%" height="780" style="border: none;" allowfullscreen webkitallowfullscreen></iframe>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger">
+                                        @*<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>*@
+                                        Tarama Dosyası <strong>bulunamadı!</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
