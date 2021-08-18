@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="IskanTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciTipId" Type="int" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Unvan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birim" Type="nvarchar" MaxLength="50" />
+    <Property Name="TcKimlikNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="Aktif" Type="bit" />
+    <Property Name="Silindi" Type="bit" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="YetkiGiris" Type="bit" />
+    <Property Name="YetkiRuhsat" Type="bit" />
+    <Property Name="YetkiRuhsatYeni" Type="bit" />
+    <Property Name="YetkiRuhsatGoster" Type="bit" />
+    <Property Name="YetkiRuhsatDuzenle" Type="bit" />
+    <Property Name="YetkiRuhsatDetay" Type="bit" />
+    <Property Name="YetkiRuhsatSil" Type="bit" />
+  </EntityType>
+  <EntityType Name="KullaniciTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+    <Property Name="KisaTip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Ruhsatlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RuhsatTipId" Type="int" />
+    <Property Name="IskanTipId" Type="int" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="RuhsatNo" Type="nvarchar" MaxLength="200" />
+    <Property Name="RuhsatSahibi" Type="nvarchar" MaxLength="200" />
+    <Property Name="TcNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="VergiNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ada" Type="nvarchar" MaxLength="50" />
+    <Property Name="Parsel" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsaatAdresi" Type="nvarchar(max)" />
+    <Property Name="RuhsatBilgileri" Type="nvarchar(max)" />
+    <Property Name="RuhsatTarihi" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsaatHarci" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="YapiDenetim" Type="nvarchar" MaxLength="50" />
+    <Property Name="SantiyeSefi" Type="nvarchar" MaxLength="50" />
+    <Property Name="IskanTarihi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Muteahhit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="DigerBilgiler" Type="nvarchar(max)" />
+    <Property Name="Tarama0" Type="nvarchar(max)" />
+    <Property Name="Tarama1" Type="nvarchar(max)" />
+    <Property Name="Tarama2" Type="nvarchar(max)" />
+    <Property Name="Tarama3" Type="nvarchar(max)" />
+    <Property Name="Tarama4" Type="nvarchar(max)" />
+    <Property Name="Tarama5" Type="nvarchar(max)" />
+    <Property Name="Tarama6" Type="nvarchar(max)" />
+    <Property Name="Tarama7" Type="nvarchar(max)" />
+    <Property Name="Tarama8" Type="nvarchar(max)" />
+    <Property Name="Tarama9" Type="nvarchar(max)" />
+    <Property Name="ProjeDosyasi" Type="nvarchar(max)" />
+    <Property Name="Aktif" Type="bit" />
+    <Property Name="Silindi" Type="bit" />
+  </EntityType>
+  <EntityType Name="RuhsatTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Kullanicilar_KullaniciTipi">
+    <End Role="KullaniciTipi" Type="Self.KullaniciTipi" Multiplicity="0..1" />
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KullaniciTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="KullaniciTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_IskanTipi">
+    <End Role="IskanTipi" Type="Self.IskanTipi" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IskanTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="IskanTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_RuhsatTipi">
+    <End Role="RuhsatTipi" Type="Self.RuhsatTipi" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RuhsatTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="RuhsatTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="IskanTipi" EntityType="Self.IskanTipi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciTipi" EntityType="Self.KullaniciTipi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ruhsatlar" EntityType="Self.Ruhsatlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RuhsatTipi" EntityType="Self.RuhsatTipi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kullanicilar_KullaniciTipi" Association="Self.FK_Kullanicilar_KullaniciTipi">
+      <End Role="KullaniciTipi" EntitySet="KullaniciTipi" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_IskanTipi" Association="Self.FK_Ruhsatlar_IskanTipi">
+      <End Role="IskanTipi" EntitySet="IskanTipi" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar" Association="Self.FK_Ruhsatlar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar1" Association="Self.FK_Ruhsatlar_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_RuhsatTipi" Association="Self.FK_Ruhsatlar_RuhsatTipi">
+      <End Role="RuhsatTipi" EntitySet="RuhsatTipi" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

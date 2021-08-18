@@ -1,0 +1,99 @@
+﻿@model Mezarliklar
+
+@{
+    ViewBag.Title = "Mezarlık Ekleme ve Güncelleme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header class="page-header">
+    <h2>@Html.ViewBag.title Paneli</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a href="~/Mezarlik">
+                    <span>Mezarlıklar</span>
+                </a>
+            </li>
+            <li><span>@Html.ViewBag.title</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Kaydet", "Mezarlik", FormMethod.Post))
+        {
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+
+                    <h2 class="panel-title">Mezarlık Bilgileri</h2>
+                    <p class="panel-subtitle">
+                        Mezarlık bilgilerini doğru bir şekilde yazıp kaydedin.
+                    </p>
+                </header>
+                <div class="panel-body">
+
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mezarlık Adı:</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Baslik, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Baslik, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Açıklama: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Aciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kayıt Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.SaveDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.SaveDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Değiştirme Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.EditDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.EditDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.SaveUserId)
+
+
+
+                </div>
+
+
+
+                <footer class="panel-footer">
+                    <button type="submit" value="Upload" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Kaydet</button>
+                    <a href="~/Mezarlik" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+                </footer>
+            </section>
+        }
+    </div>
+
+
+</div>

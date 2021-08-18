@@ -1,0 +1,393 @@
+﻿@model KirsalYapiRuhsatlari
+
+@{
+    ViewBag.Title = "Kırsal Yapı Ruhsatı Ekleme ve Güncelleme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/assets/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/select2/select2.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="~/assets/vendor/dropzone/css/basic.css" />
+    <link rel="stylesheet" href="~/assets/vendor/dropzone/css/dropzone.css" />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+    <link rel="stylesheet" href="~/assets/vendor/summernote/summernote.css" />
+    <link rel="stylesheet" href="~/assets/vendor/summernote/summernote-bs3.css" />
+    <link rel="stylesheet" href="~/assets/vendor/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="~/assets/vendor/codemirror/theme/monokai.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/assets/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script src="~/assets/vendor/modernizr/modernizr.js"></script>
+</head>
+<header class="page-header">
+    <h2>@Html.ViewBag.title Paneli</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a href="~/KirsalRuhsat">
+                    <span>Kırsal Yapı Ruhsatları</span>
+                </a>
+            </li>
+            <li><span>@Html.ViewBag.title</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Kaydet", "KirsalRuhsat", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+
+                    <h2 class="panel-title">Kırsal Yapı Ruhsat Bilgileri</h2>
+                    <p class="panel-subtitle">
+                        Ruhsat bilgilerini doğru bir şekilde yazıp kaydedin.
+                    </p>
+                </header>
+                <div class="panel-body">
+
+                    @Html.AntiForgeryToken()
+
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ruhsat Tip Seçimi:</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(m => m.RuhsatTipId, Model.RuhsatTipListesi, "---Seçiniz---", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.RuhsatTipId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">İskan Tip Seçimi:</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("IskanTipId",
+                        new List<SelectListItem> {
+                         new SelectListItem {
+                            Text="---Seçiniz---",
+                            Value="0",
+                            Selected = true,
+                            Disabled = true,
+                            // Disabled = true  disable olarak gelsin istersek kullanıyoruz
+                         },
+                         new SelectListItem {
+                             Text="Kısmi",
+                             Value="1",
+                         },
+                         new SelectListItem {
+                             Text="Tam",
+                             Value="2",
+                         }
+                        }, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.IskanTipId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ruhsat No:</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.RuhsatNo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.RuhsatNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ruhsat Tarihi:</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Tarih, new { @class = "form-control", placeholder = "gg.aa.yyyy" })
+                            @Html.ValidationMessageFor(x => x.Tarih, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ruhsat Sahibi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.YapiSahibi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.YapiSahibi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">TC No: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.TcNo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.TcNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mahalle: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Mahalle, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Mahalle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ada: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Ada, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Ada, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Parsel: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Parsel, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Parsel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Parsel Alanı: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.ParselAlani, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.ParselAlani, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Yapı Alanı: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.YapiAlani, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.YapiAlani, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Adresi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Adres, new { @class = "form-control", @style = "min-height:36px; height:70px;" })
+                            @Html.ValidationMessageFor(x => x.Adres, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Yapı Sınıfı: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.YapiSinifi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.YapiSinifi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">İnşaat Türü: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.InsaatTuru, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.InsaatTuru, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kat Sayısı: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.KatSayisi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.KatSayisi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mimari Proje Müellifi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.MimariProjeMuellifi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.MimariProjeMuellifi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Statik Proje Müellifi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.StatikProjeMuellifi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.StatikProjeMuellifi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Elektrik Proje Müellifi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.ElektrikProjeMuellifi, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.ElektrikProjeMuellifi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Detay Bilgiler: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Detay, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Detay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Açıklama: </label>
+                        <div class="col-sm-10">
+                            @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kayıt Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.SaveDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.SaveDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Değiştirme Tarihi: </label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.EditDate, new { @class = "form-control", @readonly = true })
+                            @Html.ValidationMessageFor(x => x.EditDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.SaveUserId)
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Yapı Ruhsatı 1</label>
+                        @if (Model.Tarama0 == null)
+                        {
+                            <div class="col-md-6">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-append">
+                                        <div class="uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview">@Html.DisplayFor(m => m.Tarama0, new { @class = "form-control" })</span>
+                                        </div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <span class="fileupload-new">Dosya Seç</span>
+                                            <input type="file" class="custom-file-input" id="customFile" name="Tarama0">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <a href="~/KirsalRuhsat/TaramaSil?File=file0&Id=@Model.Id" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Dosya Sil" onclick="return confirm('@Model.YapiSahibi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Dosya Sil</a>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.Tarama0, new { @class = "form-control", @id = "inputReadOnly", @readonly = "readonly" })
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Yapı Ruhsatı 2</label>
+                        @if (Model.Tarama1 == null)
+                        {
+                            <div class="col-md-6">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-append">
+                                        <div class="uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview">@Html.DisplayFor(m => m.Tarama1, new { @class = "form-control" })</span>
+                                        </div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <span class="fileupload-new">Dosya Seç</span>
+                                            <input type="file" class="custom-file-input" id="customFile" name="Tarama1">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <a href="~/KirsalRuhsat/TaramaSil?File=file1&Id=@Model.Id" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Dosya Sil" onclick="return confirm('@Model.YapiSahibi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Dosya Sil</a>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.Tarama1, new { @class = "form-control", @id = "inputReadOnly", @readonly = "readonly" })
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Yapı Ruhsatı 3</label>
+                        @if (Model.Tarama2 == null)
+                        {
+                            <div class="col-md-6">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-append">
+                                        <div class="uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview">@Html.DisplayFor(m => m.Tarama2, new { @class = "form-control" })</span>
+                                        </div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <span class="fileupload-new">Dosya Seç</span>
+                                            <input type="file" class="custom-file-input" id="customFile" name="Tarama2">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <a href="~/KirsalRuhsat/TaramaSil?File=file2&Id=@Model.Id" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Dosya Sil" onclick="return confirm('@Model.YapiSahibi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Dosya Sil</a>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.Tarama2, new { @class = "form-control", @id = "inputReadOnly", @readonly = "readonly" })
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Proje Dosyasi</label>
+                        @if (Model.ProjeDosyasi == null)
+                        {
+                            <div class="col-md-6">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-append">
+                                        <div class="uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview">@Html.DisplayFor(m => m.ProjeDosyasi, new { @class = "form-control" })</span>
+                                        </div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-exists">Değiştir</span>
+                                            <span class="fileupload-new">Dosya Seç</span>
+                                            <input type="file" class="custom-file-input" id="customFile" name="ProjeDosyasi">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2">
+                                <a href="~/KirsalRuhsat/TaramaSil?File=proje&Id=@Model.Id" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Dosya Sil" onclick="return confirm('@Model.YapiSahibi kaydı silinsin mi?')"><i class="fa fa-eraser"></i>&nbsp;&nbsp;Dosya Sil</a>
+                            </div>
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(m => m.ProjeDosyasi, new { @class = "form-control", @id = "inputReadOnly", @readonly = "readonly" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <button type="submit" value="Upload" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Kaydet</button>
+                    <a href="~/KirsalRuhsat" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+                </footer>
+            </section>
+        }
+    </div>
+
+
+</div>

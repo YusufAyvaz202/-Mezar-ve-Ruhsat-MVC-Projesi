@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Mezarlıklar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="~/assets/vendor/select2/select2.css" />
+    <link rel="stylesheet" href="~/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+    <link rel="stylesheet" href="~/assets/stylesheets/theme-custom.css">
+</head>
+<header class="page-header">
+    <h2>@Html.ViewBag.title</h2>
+
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="~/Home">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>@Html.ViewBag.title</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+<section class="panel">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="fa fa-caret-down"></a>
+            <a href="#" class="fa fa-times"></a>
+        </div>
+
+        <h2 class="panel-title">
+            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+            {
+                <a href="~/Mezarlik/Yeni" type="button" class="mb-xs mt-xs mr-xs btn btn-info"><i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni</a>
+            }
+            <a href="~/Home" type="button" class="mb-xs mt-xs mr-xs btn btn-danger"><i class="fa fa-external-link"></i>&nbsp;&nbsp;Kapat</a>
+        </h2>
+    </header>
+    <div class="panel-body">
+        @if (ViewBag.Mesaj != null)
+            {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>@ViewBag.Mesaj</strong>
+            </div>
+        }
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>BAŞLIK</th>
+                    <th>AÇIKLAMA</th>
+                    <th>KAYIT TARİHİ</th>
+                    <th>DEĞİŞTİRME TARİHİ</th>
+                    <th style="min-width:180px;width:180px">İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Id</td>
+                        <td>@item.Baslik</td>
+                        <td>@item.Aciklama</td>
+                        <td>@item.SaveDate</td>
+                        <td>@item.EditDate</td>
+                        <td>
+                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                            {
+                                <a href="~/Mezarlik/BilgiGetir/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-primary" data-toggle="tooltip" data-placement="top" title="Düzenle"><i class="fa fa-pencil"></i></a>
+                            }
+                            @if (User.IsInRole("A") || User.IsInRole("MA") || User.IsInRole("U"))
+                            {
+                                <a href="~/Mezarlik/Sil/@item.Id" type="button" class="mb-xs mt-xs mr-xs btn btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('@item.Baslik kaydı silinsin mi?')"><i class="fa fa-eraser"></i></a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+</section>
+<!-- end: page -->
+
+@section scripts{
+
+    <!-- Specific Page Vendor -->
+    @*<script src="~/assets/vendor/select2/select2.js"></script>*@
+    <script src="~/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="~/assets/javascripts/theme.js"></script>
+
+    <!-- Examples -->
+    <script src="~/assets/javascripts/tables/examples.datatables.default.js"></script>
+
+
+
+}
+
+
+
+

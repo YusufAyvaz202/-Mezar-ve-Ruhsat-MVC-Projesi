@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="IskanTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ruhsatlar" Relationship="Self.FK_Ruhsatlar_IskanTipi" FromRole="IskanTipi" ToRole="Ruhsatlar" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciTipId" Type="Int32" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unvan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TcKimlikNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aktif" Type="Boolean" />
+    <Property Name="Silindi" Type="Boolean" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="YetkiGiris" Type="Boolean" />
+    <Property Name="YetkiRuhsat" Type="Boolean" />
+    <Property Name="YetkiRuhsatYeni" Type="Boolean" />
+    <Property Name="YetkiRuhsatGoster" Type="Boolean" />
+    <Property Name="YetkiRuhsatDuzenle" Type="Boolean" />
+    <Property Name="YetkiRuhsatDetay" Type="Boolean" />
+    <Property Name="YetkiRuhsatSil" Type="Boolean" />
+    <NavigationProperty Name="KullaniciTipi" Relationship="Self.FK_Kullanicilar_KullaniciTipi" FromRole="Kullanicilar" ToRole="KullaniciTipi" />
+    <NavigationProperty Name="Ruhsatlar" Relationship="Self.FK_Ruhsatlar_Kullanicilar" FromRole="Kullanicilar" ToRole="Ruhsatlar" />
+    <NavigationProperty Name="Ruhsatlar1" Relationship="Self.FK_Ruhsatlar_Kullanicilar1" FromRole="Kullanicilar" ToRole="Ruhsatlar" />
+  </EntityType>
+  <EntityType Name="KullaniciTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KisaTip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Kullanicilar_KullaniciTipi" FromRole="KullaniciTipi" ToRole="Kullanicilar" />
+  </EntityType>
+  <EntityType Name="Ruhsatlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RuhsatTipId" Type="Int32" />
+    <Property Name="IskanTipId" Type="Int32" />
+    <Property Name="SaveUserId" Type="Int32" />
+    <Property Name="EditUserId" Type="Int32" />
+    <Property Name="SaveDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RuhsatNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RuhsatSahibi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TcNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VergiNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ada" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Parsel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsaatAdresi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RuhsatBilgileri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RuhsatTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsaatHarci" Type="Decimal" Precision="10" Scale="3" />
+    <Property Name="YapiDenetim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SantiyeSefi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IskanTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Muteahhit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DigerBilgiler" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama0" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama8" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tarama9" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProjeDosyasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aktif" Type="Boolean" />
+    <Property Name="Silindi" Type="Boolean" />
+    <NavigationProperty Name="IskanTipi" Relationship="Self.FK_Ruhsatlar_IskanTipi" FromRole="Ruhsatlar" ToRole="IskanTipi" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Ruhsatlar_Kullanicilar" FromRole="Ruhsatlar" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Kullanicilar1" Relationship="Self.FK_Ruhsatlar_Kullanicilar1" FromRole="Ruhsatlar" ToRole="Kullanicilar" />
+    <NavigationProperty Name="RuhsatTipi" Relationship="Self.FK_Ruhsatlar_RuhsatTipi" FromRole="Ruhsatlar" ToRole="RuhsatTipi" />
+  </EntityType>
+  <EntityType Name="RuhsatTipi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ruhsatlar" Relationship="Self.FK_Ruhsatlar_RuhsatTipi" FromRole="RuhsatTipi" ToRole="Ruhsatlar" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Ruhsatlar_IskanTipi">
+    <End Role="IskanTipi" Type="Self.IskanTipi" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IskanTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="IskanTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanicilar_KullaniciTipi">
+    <End Role="KullaniciTipi" Type="Self.KullaniciTipi" Multiplicity="0..1" />
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KullaniciTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="KullaniciTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_RuhsatTipi">
+    <End Role="RuhsatTipi" Type="Self.RuhsatTipi" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RuhsatTipi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="RuhsatTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="IskanTipi" EntityType="Self.IskanTipi" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="KullaniciTipi" EntityType="Self.KullaniciTipi" />
+    <EntitySet Name="Ruhsatlar" EntityType="Self.Ruhsatlar" />
+    <EntitySet Name="RuhsatTipi" EntityType="Self.RuhsatTipi" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Ruhsatlar_IskanTipi" Association="Self.FK_Ruhsatlar_IskanTipi">
+      <End Role="IskanTipi" EntitySet="IskanTipi" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanicilar_KullaniciTipi" Association="Self.FK_Kullanicilar_KullaniciTipi">
+      <End Role="KullaniciTipi" EntitySet="KullaniciTipi" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar" Association="Self.FK_Ruhsatlar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar1" Association="Self.FK_Ruhsatlar_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_RuhsatTipi" Association="Self.FK_Ruhsatlar_RuhsatTipi">
+      <End Role="RuhsatTipi" EntitySet="RuhsatTipi" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

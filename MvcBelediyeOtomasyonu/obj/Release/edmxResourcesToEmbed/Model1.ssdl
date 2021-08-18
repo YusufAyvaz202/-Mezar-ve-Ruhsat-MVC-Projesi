@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MezarlikId" Type="int" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="AdaNo" Type="nvarchar" MaxLength="10" />
+    <Property Name="MezarlikSayisi" Type="int" />
+    <Property Name="Detay" Type="nvarchar(max)" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="KirsalYapiRuhsatlari">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RuhsatTipId" Type="int" />
+    <Property Name="IskanTipId" Type="int" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tarih" Type="nvarchar" MaxLength="100" />
+    <Property Name="RuhsatNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="YapiSahibi" Type="nvarchar" MaxLength="200" />
+    <Property Name="TcNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Mahalle" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ada" Type="int" />
+    <Property Name="Parsel" Type="int" />
+    <Property Name="ParselAlani" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="YapiAlani" Type="decimal" Precision="18" Scale="6" />
+    <Property Name="Adres" Type="nvarchar(max)" />
+    <Property Name="YapiSinifi" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsaatTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="KatSayisi" Type="nvarchar" MaxLength="50" />
+    <Property Name="MimariProjeMuellifi" Type="nvarchar" MaxLength="200" />
+    <Property Name="StatikProjeMuellifi" Type="nvarchar" MaxLength="200" />
+    <Property Name="ElektrikProjeMuellifi" Type="nvarchar" MaxLength="200" />
+    <Property Name="Tarama0" Type="nvarchar(max)" />
+    <Property Name="Tarama1" Type="nvarchar(max)" />
+    <Property Name="Tarama2" Type="nvarchar(max)" />
+    <Property Name="ProjeDosyasi" Type="nvarchar(max)" />
+    <Property Name="Detay" Type="nvarchar(max)" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="KullaniciTipId" Type="int" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Unvan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birim" Type="nvarchar" MaxLength="50" />
+    <Property Name="TcKimlikNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="Aktif" Type="bit" />
+    <Property Name="Silindi" Type="bit" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="YetkiGiris" Type="bit" />
+    <Property Name="YetkiRuhsat" Type="bit" />
+    <Property Name="YetkiRuhsatYeni" Type="bit" />
+    <Property Name="YetkiRuhsatGoster" Type="bit" />
+    <Property Name="YetkiRuhsatDuzenle" Type="bit" />
+    <Property Name="YetkiRuhsatDetay" Type="bit" />
+    <Property Name="YetkiRuhsatSil" Type="bit" />
+    <Property Name="YetkiKirsalRuhsat" Type="bit" />
+    <Property Name="YetkiKirsalRuhsatYeni" Type="bit" />
+    <Property Name="YetkiKirsalRuhsatGoster" Type="bit" />
+    <Property Name="YetkiKirsalRuhsatDuzenle" Type="bit" />
+    <Property Name="YetkiKirsalRuhsatDetay" Type="bit" />
+    <Property Name="YetkiKirsalRuhsatSil" Type="bit" />
+    <Property Name="YetkiMezarlik" Type="bit" />
+    <Property Name="YetkiMezarlikYeni" Type="bit" />
+    <Property Name="YetkiMezarlikGoster" Type="bit" />
+    <Property Name="YetkiMezarlikDuzenle" Type="bit" />
+    <Property Name="YetkiMezarlikDetay" Type="bit" />
+    <Property Name="YetkiMezarlikSil" Type="bit" />
+    <Property Name="YetkiAdalar" Type="bit" />
+    <Property Name="YetkiAdalarYeni" Type="bit" />
+    <Property Name="YetkiAdalarGoster" Type="bit" />
+    <Property Name="YetkiAdalarDuzenle" Type="bit" />
+    <Property Name="YetkiAdalarDetay" Type="bit" />
+    <Property Name="YetkiAdalarSil" Type="bit" />
+    <Property Name="YetkiMezarYerleri" Type="bit" />
+    <Property Name="YetkiMezarYerleriYeni" Type="bit" />
+    <Property Name="YetkiMezarYerleriGoster" Type="bit" />
+    <Property Name="YetkiMezarYerleriDuzenle" Type="bit" />
+    <Property Name="YetkiMezarYerleriDetay" Type="bit" />
+    <Property Name="YetkiMezarYerleriSil" Type="bit" />
+  </EntityType>
+  <EntityType Name="KullaniciTipleri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+    <Property Name="KisaTip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Mezarliklar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MezarYerleri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="MezarlikId" Type="int" />
+    <Property Name="AdaId" Type="int" />
+    <Property Name="MezarNo" Type="int" />
+    <Property Name="TcNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyadi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cinsiyet" Type="nvarchar" MaxLength="6" />
+    <Property Name="IrtibatNo" Type="nvarchar" MaxLength="16" />
+    <Property Name="DogumTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="OlumTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="DefinTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="MakbuzNo" Type="nvarchar" MaxLength="10" />
+    <Property Name="MakbuzTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="MakbuzTarama" Type="nvarchar(max)" />
+    <Property Name="Durum" Type="nvarchar" MaxLength="50" />
+    <Property Name="Detay" Type="nvarchar(max)" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Ruhsatlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RuhsatTipId" Type="int" />
+    <Property Name="IskanTipId" Type="int" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="RuhsatNo" Type="nvarchar" MaxLength="200" />
+    <Property Name="RuhsatSahibi" Type="nvarchar" MaxLength="200" />
+    <Property Name="TcNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="VergiNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ada" Type="nvarchar" MaxLength="50" />
+    <Property Name="Parsel" Type="nvarchar" MaxLength="50" />
+    <Property Name="InsaatAdresi" Type="nvarchar(max)" />
+    <Property Name="RuhsatBilgileri" Type="nvarchar(max)" />
+    <Property Name="RuhsatTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="InsaatHarci" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="YapiDenetim" Type="nvarchar" MaxLength="50" />
+    <Property Name="SantiyeSefi" Type="nvarchar" MaxLength="50" />
+    <Property Name="IskanTarihi" Type="nvarchar" MaxLength="100" />
+    <Property Name="Muteahhit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+    <Property Name="DigerBilgiler" Type="nvarchar(max)" />
+    <Property Name="Tarama0" Type="nvarchar(max)" />
+    <Property Name="Tarama1" Type="nvarchar(max)" />
+    <Property Name="Tarama2" Type="nvarchar(max)" />
+    <Property Name="Tarama3" Type="nvarchar(max)" />
+    <Property Name="Tarama4" Type="nvarchar(max)" />
+    <Property Name="Tarama5" Type="nvarchar(max)" />
+    <Property Name="Tarama6" Type="nvarchar(max)" />
+    <Property Name="Tarama7" Type="nvarchar(max)" />
+    <Property Name="Tarama8" Type="nvarchar(max)" />
+    <Property Name="Tarama9" Type="nvarchar(max)" />
+    <Property Name="ProjeDosyasi" Type="nvarchar(max)" />
+    <Property Name="Aktif" Type="bit" />
+    <Property Name="Silindi" Type="bit" />
+  </EntityType>
+  <EntityType Name="RuhsatTipleri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveUserId" Type="int" />
+    <Property Name="SaveDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="EditUserId" Type="int" />
+    <Property Name="EditDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Aciklama" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Adalar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Adalar" Type="Self.Adalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Adalar">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adalar_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Adalar" Type="Self.Adalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Adalar">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adalar_Mezarliklar">
+    <End Role="Mezarliklar" Type="Self.Mezarliklar" Multiplicity="0..1" />
+    <End Role="Adalar" Type="Self.Adalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mezarliklar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Adalar">
+        <PropertyRef Name="MezarlikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KirsalYapiRuhsatlari_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="KirsalYapiRuhsatlari" Type="Self.KirsalYapiRuhsatlari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KirsalYapiRuhsatlari">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KirsalYapiRuhsatlari_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="KirsalYapiRuhsatlari" Type="Self.KirsalYapiRuhsatlari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KirsalYapiRuhsatlari">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KirsalYapiRuhsatlari_RuhsatTipleri">
+    <End Role="RuhsatTipleri" Type="Self.RuhsatTipleri" Multiplicity="0..1" />
+    <End Role="KirsalYapiRuhsatlari" Type="Self.KirsalYapiRuhsatlari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RuhsatTipleri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KirsalYapiRuhsatlari">
+        <PropertyRef Name="RuhsatTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanicilar_KullaniciTipi">
+    <End Role="KullaniciTipleri" Type="Self.KullaniciTipleri" Multiplicity="0..1" />
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KullaniciTipleri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kullanicilar">
+        <PropertyRef Name="KullaniciTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciTipleri_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="KullaniciTipleri" Type="Self.KullaniciTipleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KullaniciTipleri">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciTipleri_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="KullaniciTipleri" Type="Self.KullaniciTipleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="KullaniciTipleri">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mezarliklar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Mezarliklar" Type="Self.Mezarliklar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mezarliklar">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mezarliklar_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Mezarliklar" Type="Self.Mezarliklar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mezarliklar">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MezarYerleri_Adalar">
+    <End Role="Adalar" Type="Self.Adalar" Multiplicity="0..1" />
+    <End Role="MezarYerleri" Type="Self.MezarYerleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MezarYerleri">
+        <PropertyRef Name="AdaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MezarYerleri_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="MezarYerleri" Type="Self.MezarYerleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MezarYerleri">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MezarYerleri_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="MezarYerleri" Type="Self.MezarYerleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MezarYerleri">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MezarYerleri_Mezarliklar">
+    <End Role="Mezarliklar" Type="Self.Mezarliklar" Multiplicity="0..1" />
+    <End Role="MezarYerleri" Type="Self.MezarYerleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mezarliklar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MezarYerleri">
+        <PropertyRef Name="MezarlikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ruhsatlar_RuhsatTipleri">
+    <End Role="RuhsatTipleri" Type="Self.RuhsatTipleri" Multiplicity="0..1" />
+    <End Role="Ruhsatlar" Type="Self.Ruhsatlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RuhsatTipleri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ruhsatlar">
+        <PropertyRef Name="RuhsatTipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuhsatTipleri_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="RuhsatTipleri" Type="Self.RuhsatTipleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuhsatTipleri">
+        <PropertyRef Name="SaveUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuhsatTipleri_Kullanicilar1">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="RuhsatTipleri" Type="Self.RuhsatTipleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RuhsatTipleri">
+        <PropertyRef Name="EditUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Adalar" EntityType="Self.Adalar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KirsalYapiRuhsatlari" EntityType="Self.KirsalYapiRuhsatlari" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciTipleri" EntityType="Self.KullaniciTipleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mezarliklar" EntityType="Self.Mezarliklar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MezarYerleri" EntityType="Self.MezarYerleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ruhsatlar" EntityType="Self.Ruhsatlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RuhsatTipleri" EntityType="Self.RuhsatTipleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Adalar_Kullanicilar" Association="Self.FK_Adalar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Adalar" EntitySet="Adalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adalar_Kullanicilar1" Association="Self.FK_Adalar_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Adalar" EntitySet="Adalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adalar_Mezarliklar" Association="Self.FK_Adalar_Mezarliklar">
+      <End Role="Mezarliklar" EntitySet="Mezarliklar" />
+      <End Role="Adalar" EntitySet="Adalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KirsalYapiRuhsatlari_Kullanicilar" Association="Self.FK_KirsalYapiRuhsatlari_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="KirsalYapiRuhsatlari" EntitySet="KirsalYapiRuhsatlari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KirsalYapiRuhsatlari_Kullanicilar1" Association="Self.FK_KirsalYapiRuhsatlari_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="KirsalYapiRuhsatlari" EntitySet="KirsalYapiRuhsatlari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KirsalYapiRuhsatlari_RuhsatTipleri" Association="Self.FK_KirsalYapiRuhsatlari_RuhsatTipleri">
+      <End Role="RuhsatTipleri" EntitySet="RuhsatTipleri" />
+      <End Role="KirsalYapiRuhsatlari" EntitySet="KirsalYapiRuhsatlari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanicilar_KullaniciTipi" Association="Self.FK_Kullanicilar_KullaniciTipi">
+      <End Role="KullaniciTipleri" EntitySet="KullaniciTipleri" />
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciTipleri_Kullanicilar" Association="Self.FK_KullaniciTipleri_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="KullaniciTipleri" EntitySet="KullaniciTipleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciTipleri_Kullanicilar1" Association="Self.FK_KullaniciTipleri_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="KullaniciTipleri" EntitySet="KullaniciTipleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mezarliklar_Kullanicilar" Association="Self.FK_Mezarliklar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Mezarliklar" EntitySet="Mezarliklar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mezarliklar_Kullanicilar1" Association="Self.FK_Mezarliklar_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Mezarliklar" EntitySet="Mezarliklar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MezarYerleri_Adalar" Association="Self.FK_MezarYerleri_Adalar">
+      <End Role="Adalar" EntitySet="Adalar" />
+      <End Role="MezarYerleri" EntitySet="MezarYerleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MezarYerleri_Kullanicilar" Association="Self.FK_MezarYerleri_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="MezarYerleri" EntitySet="MezarYerleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MezarYerleri_Kullanicilar1" Association="Self.FK_MezarYerleri_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="MezarYerleri" EntitySet="MezarYerleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MezarYerleri_Mezarliklar" Association="Self.FK_MezarYerleri_Mezarliklar">
+      <End Role="Mezarliklar" EntitySet="Mezarliklar" />
+      <End Role="MezarYerleri" EntitySet="MezarYerleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar" Association="Self.FK_Ruhsatlar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_Kullanicilar1" Association="Self.FK_Ruhsatlar_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ruhsatlar_RuhsatTipleri" Association="Self.FK_Ruhsatlar_RuhsatTipleri">
+      <End Role="RuhsatTipleri" EntitySet="RuhsatTipleri" />
+      <End Role="Ruhsatlar" EntitySet="Ruhsatlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuhsatTipleri_Kullanicilar" Association="Self.FK_RuhsatTipleri_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="RuhsatTipleri" EntitySet="RuhsatTipleri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuhsatTipleri_Kullanicilar1" Association="Self.FK_RuhsatTipleri_Kullanicilar1">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="RuhsatTipleri" EntitySet="RuhsatTipleri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b0fdd21a02b43ad9022023b13db8d31" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Adalar" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KirsalYapiRuhsatlari" Width="1.5" PointX="8.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Kullanicilar" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KullaniciTipleri" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Mezarliklar" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MezarYerleri" Width="1.5" PointX="10.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ruhsatlar" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RuhsatTipleri" Width="1.5" PointX="3" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Adalar_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Adalar_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Adalar_Mezarliklar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MezarYerleri_Adalar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KirsalYapiRuhsatlari_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KirsalYapiRuhsatlari_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KirsalYapiRuhsatlari_RuhsatTipleri" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Kullanicilar_KullaniciTipi" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KullaniciTipleri_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_KullaniciTipleri_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Mezarliklar_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Mezarliklar_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MezarYerleri_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MezarYerleri_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ruhsatlar_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ruhsatlar_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_RuhsatTipleri_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_RuhsatTipleri_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MezarYerleri_Mezarliklar" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ruhsatlar_RuhsatTipleri" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
